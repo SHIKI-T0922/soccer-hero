@@ -167,7 +167,7 @@ function calcXP(stamps,skills,cats){
 function getLevel(xp){let l=LEVELS[0];for(const x of LEVELS){if(xp>=x.min)l=x;}return l;}
 function getNextLevel(xp){return LEVELS.find(l=>l.min>xp)||null;}
 function checkBadges(stamps,sc,xp,str,tot){return BADGES.filter(b=>{try{return b.cond(stamps,sc,xp,str,tot);}catch{return false;}});}
-// window.storage (Artifact永続ストレージ) ヘルパー
+// localStorage (Artifact永続ストレージ) ヘルパー
 async function storagGet(k,fb){
   try{
     const r=await localStorage.getItem
@@ -1047,7 +1047,7 @@ export default function App(){
     });
   },[]);
 
-  // 各stateをwindow.storageに保存
+  // 各stateをlocalStorageに保存
   useEffect(()=>{if(loaded)storagSet("sc3_cats",cats)},[cats,loaded]);
   useEffect(()=>{if(loaded)storagSet("sc3_skills",skills)},[skills,loaded]);
   useEffect(()=>{if(loaded)storagSet("sc3_cfg",cfg)},[cfg,loaded]);
