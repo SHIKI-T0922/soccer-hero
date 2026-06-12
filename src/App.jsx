@@ -170,13 +170,14 @@ function checkBadges(stamps,sc,xp,str,tot){return BADGES.filter(b=>{try{return b
 // window.storage (Artifact永続ストレージ) ヘルパー
 async function storagGet(k,fb){
   try{
-    const r=await window.storage.get(k);
+    const r=await localStorage.getItem
+(k);
     if(r&&r.value!=null) return JSON.parse(r.value);
     return fb;
   }catch{ return fb; }
 }
 async function storagSet(k,v){
-  try{ await window.storage.set(k,JSON.stringify(v)); }catch{}
+  try{ await localStorage.setItem(k,JSON.stringify(v)); }catch{}
 }
 // 全データを一括ロード
 async function loadAllData(){
